@@ -1,0 +1,135 @@
+<Configuration>
+  <SharedSolutionDisabledTemplatesManager>
+    <DisabledTemplates />
+  </SharedSolutionDisabledTemplatesManager>
+  <UserSolutionDisabledTemplatesManager>
+    <DisabledTemplates />
+  </UserSolutionDisabledTemplatesManager>
+  <FileStructureView>
+    <AutoScrollToSource>False</AutoScrollToSource>
+    <TrackCaretLocation>False</TrackCaretLocation>
+  </FileStructureView>
+  <ReFormatCode>
+    <ReorderMembers>False</ReorderMembers>
+    <OptimizeUsings>False</OptimizeUsings>
+    <RemoveRedundantThis>False</RemoveRedundantThis>
+    <ShortenReferences>False</ShortenReferences>
+  </ReFormatCode>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <EditorManager>
+    <RecentFiles>
+      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:BackUpService.cs" caret="0" scrollPosition="0|0" />
+      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:BackUpService.Designer.cs" caret="0" scrollPosition="0|0" />
+      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:UploadWaitBackUpSleepThread.cs" caret="585" scrollPosition="0|0" />
+      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:Time.cs" caret="108" scrollPosition="0|0" />
+      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:Program.cs" caret="268" scrollPosition="0|4" />
+      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:Logger.cs" caret="322" scrollPosition="0|0" />
+      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:Config.cs" caret="881" scrollPosition="0|0" />
+      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:BackUpThreadBase.cs" caret="594" scrollPosition="0|0" />
+      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:BackUpSleepThread.cs" caret="114" scrollPosition="0|33" />
+      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:BackUpHolder.cs" caret="183" scrollPosition="0|0" />
+      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:BackUpAction.cs" caret="212" scrollPosition="0|1" />
+    </RecentFiles>
+  </EditorManager>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Qualified:System.Threading.Thread">
+      <Item value="Name" priority="0" />
+      <Item value="Start" priority="0" />
+      <Item value="Interrupt" priority="0" />
+      <Item value="Join" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.DateTime">
+      <Item value="Minute" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@BackUpService.Config.Instance">
+      <Item value="BackUps" priority="0" />
+      <Item value="TempFolder" priority="0" />
+      <Item value="BackupFolders" priority="0" />
+      <Item value="LogFile" priority="0" />
+      <Item value="Wait" priority="2" />
+      <Item value="WaitSleep" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.List&lt;BackUpService.BackUpService&gt;">
+      <Item value="Add" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:BackUpService.Time">
+      <Item value="Hour" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.DateTime.Now">
+      <Item value="ToString" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:ICSharpCode.SharpZipLib.Zip.FastZip">
+      <Item value="CreateEmptyDirectories" priority="0" />
+      <Item value="CreateZip" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.List&lt;string&gt;">
+      <Item value="Add" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.File">
+      <Item value="Copy" priority="0" />
+      <Item value="OpenRead" priority="0" />
+      <Item value="Create" priority="0" />
+      <Item value="AppendAllText" priority="0" />
+      <Item value="Delete" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:BackUpService.BackUpSleepThread">
+      <Item value="Time" priority="0" />
+      <Item value="Start" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Environment">
+      <Item value="GetFolderPath" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Reflection.Assembly">
+      <Item value="Location" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.Path">
+      <Item value="Combine" priority="0" />
+      <Item value="GetFileName" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@">
+      <Item value="Deserialize" priority="0" />
+      <Item value="BackupFolders" priority="0" />
+      <Item value="BackUps" priority="0" />
+      <Item value="LogFile" priority="0" />
+      <Item value="Upload" priority="0" />
+      <Item value="Serialize" priority="0" />
+      <Item value="Length" priority="0" />
+      <Item value="Stop" priority="0" />
+      <Item value="TempFolder" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.String">
+      <Item value="Format" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Diagnostics.EventLog">
+      <Item value="WriteEntry" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:BackUpService.BackUpHolder">
+      <Item value="Start" priority="0" />
+      <Item value="Stop" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Console">
+      <Item value="In" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Console.In">
+      <Item value="Read" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Threading.Thread">
+      <Item value="Sleep" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:BackUpService.BackUpThreadBase">
+      <Item value="Start" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Collections.Generic.List&lt;BackUpService.BackUpSleepThread&gt;">
+      <Item value="Add" priority="0" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
+</Configuration>
