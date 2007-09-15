@@ -5,9 +5,13 @@ namespace BackUpService
 {
   public class Logger
   {
+    private static readonly object LOCK = new object();
+
     public static void Log(Exception e)
     {
-      File.AppendAllText(Config.Instance.LogFile, e.ToString());
+      lock(LOCK) {
+         File.AppendAllText(Config.Instance.LogFile, e.ToString());
+      }
     }
 
     public static void LogMessage(string msg, params object[] args)
