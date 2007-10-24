@@ -1,5 +1,7 @@
 using System;
+using System.ComponentModel;
 using System.IO;
+using System.ServiceProcess;
 
 namespace BackUpService
 {
@@ -16,10 +18,13 @@ namespace BackUpService
 
     public static void LogMessage(string msg, params object[] args)
     {
-      string date = DateTime.Now + ": ";
-      File.AppendAllText(Config.Instance.LogFile, date + string.Format(msg, args) + Environment.NewLine);
-      Console.Out.Write(date);
-      Console.Out.WriteLine(msg, args);
+      lock (LOCK)
+      {
+        string date = DateTime.Now + ": ";
+        File.AppendAllText(Config.Instance.LogFile, date + string.Format(msg, args) + Environment.NewLine);
+        Console.Out.Write(date);
+        Console.Out.WriteLine(msg, args);
+      }
     }
   }
 }

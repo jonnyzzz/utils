@@ -2,6 +2,8 @@ namespace BackUpService
 {
   partial class BackUpService
   {
+    public const string SERVICE_NAME = "BackUpService";
+
     /// <summary> 
     /// Required designer variable.
     /// </summary>
@@ -29,7 +31,7 @@ namespace BackUpService
     private void InitializeComponent()
     {
       components = new System.ComponentModel.Container();
-      this.ServiceName = "BackUpService";
+      this.ServiceName = SERVICE_NAME;
     }
 
     #endregion

@@ -13,7 +13,10 @@
     </StartupObject>
     <SignManifests>true</SignManifests>
     <ManifestCertificateThumbprint>CD1E95DACEFB9F6FF674B5F74B4B8D2602B2FA1F</ManifestCertificateThumbprint>
-    <ManifestKeyFile>BackUpService_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>BackUpService_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,6 +41,8 @@
       <HintPath>..\..\lib\zip\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
@@ -51,10 +56,14 @@
     <Compile Include="BackUpService.Designer.cs">
       <DependentUpon>BackUpService.cs</DependentUpon>
     </Compile>
+    <Compile Include="BackupServiceInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="BackUpSleepThread.cs" />
     <Compile Include="BackUpThreadBase.cs" />
     <Compile Include="Config.cs" />
-    <Compile Include="Logger.cs" />
+    <Compile Include="Logger.cs">
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Time.cs" />
