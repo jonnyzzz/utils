@@ -12,7 +12,7 @@ namespace ClassLibrary1
     {
       foreach (string directory in Directory.GetDirectories(path))
       {
-        if (Path.GetFileName(directory) == ".svn")
+        if (directory.EndsWith("\\.svn"))
         {
           string pth = Path.Combine(directory, "entries");
           if (File.Exists(pth))
@@ -34,11 +34,22 @@ namespace ClassLibrary1
       else
         sourceRep = Environment.CurrentDirectory;
 
+      if (args.Length <= 1) {
+         Console.Out.WriteLine("svnRepoMove.exe from to [path]");
+         return;
+      }
+
       List<string> entries = new List<string>();      
       EnumerateEntriesFiles(sourceRep, entries);
 
       foreach (string file in entries)
       {
+        foreach(string old in Directory.GetFiles(Path.GetDirectoryName(file), "entries.tmp_*")) {
+          File.SetAttributes(old, FileAttributes.Normal);
+          File.Delete(old);
+          Console.Out.WriteLine("Delete older temp file {0}", old);
+        }
+
         File.Copy(file, file + ".tmp_" + DateTime.Now.ToString("dd.mm.yyyy-HH.MM.ss"));
 
         FileAttributes attrs = File.GetAttributes(file);

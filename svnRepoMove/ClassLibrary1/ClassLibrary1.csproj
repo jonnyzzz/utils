@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ClassLibrary1</RootNamespace>
-    <AssemblyName>ClassLibrary1</AssemblyName>
+    <AssemblyName>svnRepoMove</AssemblyName>
     <StartupObject>
     </StartupObject>
   </PropertyGroup>
