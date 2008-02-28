@@ -1,6 +1,6 @@
 <project name="BuildServer" default="selena" basedir="." xmlns:ivy="antlib:fr.jayasoft.ivy.ant">
   
-  <property name="dest" value="c:/idea2" />
+  <property name="dest" value="c:/IDEA" />
 
   <taskdef uri="antlib:fr.jayasoft.ivy.ant"
            resource="fr/jayasoft/ivy/ant/antlib.xml">
@@ -99,8 +99,7 @@
     <replaceregexp file="${opts}" match="-Xms\d+m" replace="-Xms192m" flags="g" byline="true"/>
    
     <concat destfile="${basedir}/bin/bin/idea.exe.vmoptions" append="true">
--Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005
-    </concat>   
+-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005</concat>   
 
     <copy file="${basedir}/run.bat" todir="${basedir}/bin" />
   </target>
