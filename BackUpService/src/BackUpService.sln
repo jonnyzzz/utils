@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackUpService", "BackUpService.csproj", "{1BC6872F-57CF-4A49-BCD9-99D1240E8331}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackUpService", "BackUpService\BackUpService.csproj", "{1BC6872F-57CF-4A49-BCD9-99D1240E8331}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

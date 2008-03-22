@@ -48,26 +48,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackUpAction.cs" />
-    <Compile Include="BackUpHolder.cs" />
-    <Compile Include="BackUpService.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="BackUpService.Designer.cs">
-      <DependentUpon>BackUpService.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BackupServiceInstaller.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="BackUpSleepThread.cs" />
-    <Compile Include="BackUpThreadBase.cs" />
-    <Compile Include="Config.cs" />
-    <Compile Include="Logger.cs">
-    </Compile>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Time.cs" />
-    <Compile Include="UploadWaitBackUpSleepThread.cs" />
+    <Compile Include="src\BackUpAction.cs" />
+    <Compile Include="src\BackUpHolder.cs" />
+    <Compile Include="src\BackUpService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="src\BackUpService.Designer.cs">
+      <DependentUpon>src\BackUpService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="src\BackupServiceInstaller.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="src\BackUpSleepThread.cs" />
+    <Compile Include="src\BackUpThreadBase.cs" />
+    <Compile Include="src\Config.cs" />
+    <Compile Include="src\Logger.cs" />
+    <Compile Include="src\Pair.cs" />
+    <Compile Include="src\Program.cs" />
+    <Compile Include="src\Time.cs" />
+    <Compile Include="src\UploadWaitBackUpSleepThread.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="BackUpService_TemporaryKey.pfx" />

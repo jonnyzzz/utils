@@ -10,7 +10,7 @@ namespace BackUpService
     /// The main entry point for the application.
     /// </summary>
     static int Main(string[] args)
-    {
+    { 
       if (args.Length > 0 && args[0] == "console")
       {
         try
@@ -33,7 +33,7 @@ namespace BackUpService
       {
         ServiceBase.Run(new BackUpService());
       }
-      return 0;
+      return 0;       
     }
   }
 }
