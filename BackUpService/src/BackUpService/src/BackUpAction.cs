@@ -9,6 +9,8 @@ namespace BackUpService
   {
     private const long K = 1024;
     private const long M = K*K;
+
+    //todo: As parameter
     private const long RESERVED_SPACE = 300*M;
 
     private static readonly object LOCK = new object();
@@ -89,6 +91,7 @@ namespace BackUpService
         return true;
       } catch(Exception e)
       {
+        Logger.LogMessage("Failed to CheckSpace on {0} with space {1}mb", folder, (double)space/M);
         Logger.Log(e);
         return true;
       }
@@ -126,6 +129,7 @@ namespace BackUpService
           Copy(file, Path.Combine(upload, Path.GetFileName(file)));
         } catch(Exception e)
         {
+          Logger.LogMessage("Failed to copy {0} to {1}", file, upload);
           Logger.Log(e);
           continue;          
         }
@@ -158,6 +162,7 @@ namespace BackUpService
       }      
     }
 
+    //todo: Test!
     public static int Comparison(Pair<DateTime, string> f1, Pair<DateTime, string> f2)
     {
       DateTime d1 = f1.A;

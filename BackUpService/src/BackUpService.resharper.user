@@ -1,45 +1,4 @@
 <Configuration>
-  <SharedSolutionDisabledTemplatesManager>
-    <DisabledTemplates />
-  </SharedSolutionDisabledTemplatesManager>
-  <UserSolutionDisabledTemplatesManager>
-    <DisabledTemplates />
-  </UserSolutionDisabledTemplatesManager>
-  <FileStructureView>
-    <AutoScrollToSource>False</AutoScrollToSource>
-    <TrackCaretLocation>False</TrackCaretLocation>
-  </FileStructureView>
-  <ReFormatCode>
-    <ReorderMembers>False</ReorderMembers>
-    <OptimizeUsings>False</OptimizeUsings>
-    <RemoveRedundantThis>False</RemoveRedundantThis>
-    <ShortenReferences>False</ShortenReferences>
-  </ReFormatCode>
-  <NAntValidationSettings>
-    <NAntPath value="" />
-  </NAntValidationSettings>
-  <SettingsComponent>
-    <string />
-    <integer />
-    <boolean>
-      <setting name="SolutionAnalysisEnabled">False</setting>
-    </boolean>
-  </SettingsComponent>
-  <EditorManager>
-    <RecentFiles>
-      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:BackUpService.cs" caret="0" scrollPosition="0|0" />
-      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:BackUpService.Designer.cs" caret="0" scrollPosition="0|0" />
-      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:UploadWaitBackUpSleepThread.cs" caret="585" scrollPosition="0|0" />
-      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:Time.cs" caret="108" scrollPosition="0|0" />
-      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:Program.cs" caret="268" scrollPosition="0|4" />
-      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:Logger.cs" caret="322" scrollPosition="0|0" />
-      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:Config.cs" caret="881" scrollPosition="0|0" />
-      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:BackUpThreadBase.cs" caret="594" scrollPosition="0|0" />
-      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:BackUpSleepThread.cs" caret="114" scrollPosition="0|33" />
-      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:BackUpHolder.cs" caret="183" scrollPosition="0|0" />
-      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/f:BackUpAction.cs" caret="212" scrollPosition="0|1" />
-    </RecentFiles>
-  </EditorManager>
   <CompletionStatisticsManager>
     <ItemStatistics item="Qualified:System.Threading.Thread">
       <Item value="Name" priority="0" />
@@ -79,7 +38,8 @@
       <Item value="OpenRead" priority="0" />
       <Item value="Create" priority="0" />
       <Item value="AppendAllText" priority="0" />
-      <Item value="Delete" priority="0" />
+      <Item value="Delete" priority="1" />
+      <Item value="GetLastWriteTime" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:BackUpService.BackUpSleepThread">
       <Item value="Time" priority="0" />
@@ -105,6 +65,12 @@
       <Item value="Length" priority="0" />
       <Item value="Stop" priority="0" />
       <Item value="TempFolder" priority="0" />
+      <Item value="RootDirectory" priority="0" />
+      <Item value="Attributes" priority="0" />
+      <Item value="FullName" priority="0" />
+      <Item value="AvailableFreeSpace" priority="0" />
+      <Item value="Add" priority="0" />
+      <Item value="B" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:@System.String">
       <Item value="Format" priority="0" />
@@ -131,5 +97,61 @@
     <ItemStatistics item="Qualified:System.Collections.Generic.List&lt;BackUpService.BackUpSleepThread&gt;">
       <Item value="Add" priority="0" />
     </ItemStatistics>
+    <ItemStatistics item="Qualified:@BackUpService.Logger">
+      <Item value="Log" priority="1" />
+      <Item value="LogMessage" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.IO.Directory">
+      <Item value="GetDirectories" priority="0" />
+      <Item value="GetFiles" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@BackUpService.BackUpAction">
+      <Item value="Comparison" priority="0" />
+    </ItemStatistics>
   </CompletionStatisticsManager>
+  <EditorManager>
+    <RecentFiles>
+      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/d:src/f:Time.cs" caret="0" scrollPosition="0|0" />
+      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/d:src/f:UploadWaitBackUpSleepThread.cs" caret="0" scrollPosition="0|12" />
+      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/d:src/f:BackUpThreadBase.cs" caret="104" scrollPosition="0|0" />
+      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/d:src/f:BackUpService.cs" caret="0" scrollPosition="0|0" />
+      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/d:src/f:BackUpHolder.cs" caret="436" scrollPosition="0|0" />
+      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/d:src/f:Pair.cs" caret="725" scrollPosition="0|0" />
+      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/d:src/f:Program.cs" caret="515" scrollPosition="0|0" />
+      <File id="1BC6872F-57CF-4A49-BCD9-99D1240E8331/d:src/f:BackUpAction.cs" caret="3244" scrollPosition="0|98" />
+    </RecentFiles>
+  </EditorManager>
+  <FileStructureView>
+    <AutoScrollToSource>False</AutoScrollToSource>
+    <TrackCaretLocation>False</TrackCaretLocation>
+  </FileStructureView>
+  <NAntValidationSettings>
+    <NAntPath value="" />
+  </NAntValidationSettings>
+  <ReFormatCode>
+    <ReorderMembers>False</ReorderMembers>
+    <OptimizeUsings>False</OptimizeUsings>
+    <RemoveRedundantThis>False</RemoveRedundantThis>
+    <ShortenReferences>False</ShortenReferences>
+  </ReFormatCode>
+  <SettingsComponent>
+    <string />
+    <integer />
+    <boolean>
+      <setting name="SolutionAnalysisEnabled">False</setting>
+    </boolean>
+  </SettingsComponent>
+  <SharedSolutionDisabledTemplatesManager>
+    <DisabledTemplates />
+  </SharedSolutionDisabledTemplatesManager>
+  <UnitTestRunner>
+    <CustomStartDirectory>
+    </CustomStartDirectory>
+    <UseShadowCopy>True</UseShadowCopy>
+    <UseCustomFolder>False</UseCustomFolder>
+    <Providers />
+  </UnitTestRunner>
+  <UserSolutionDisabledTemplatesManager>
+    <DisabledTemplates />
+  </UserSolutionDisabledTemplatesManager>
 </Configuration>
