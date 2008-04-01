@@ -10,7 +10,12 @@
         </Grid.RowDefinitions>
         <Menu Name="myMenu">
             <MenuItem Header="File" Name="myFileMenu">
-                <MenuItem Header="Open" Name="myFileOpenMenu" Click="myFileOpenMenu_Click" />
+                <MenuItem Header="Open UTF-16LE" Name="myFileOpenMenu" Click="myFileOpenMenu_Click_utf16le" InputGestureText="Ctrl+I"/>
+                <MenuItem Header="Open UTF-8" Name="myFileOpenMenu2" Click="myFileOpenMenu_Click_utf8" InputGestureText="Ctrl+O"/>                    
+                <Separator/>
+                <TextBox Name="myLines" TextChanged="myLines_TextChanged"/>
+                <Separator/>                
+                <MenuItem Header="Close" Command="ApplicationCommands.Close"/>
             </MenuItem>
         </Menu>
         <Grid Grid.Row="1">

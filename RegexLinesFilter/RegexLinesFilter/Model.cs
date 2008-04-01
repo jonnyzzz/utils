@@ -10,6 +10,7 @@ namespace RegexLinesFilter
     public class Model
     {
         private readonly List<String> myContent = new List<string>();
+        private int myLinesToGet = 1;
 
         public EventHandler<ContentChangedEventArgs> ContentChanged;
         public EventHandler<DocumentUpdatedEventArgs> DocumentUpdated;
@@ -39,9 +40,28 @@ namespace RegexLinesFilter
         {
             try
             {
+                var takenLines = new Dictionary<int, bool>();
                 var ex = new Regex(filter, RegexOptions.Compiled);
-                var all = myContent.FindAll(x => ex.Matches(x).Count > 0);
+                for(var i=0; i<myContent.Count; i++)
+                {
+                    if (ex.Matches(myContent[i]).Count > 0)
+                    {
+                        for(var ln = i-myLinesToGet; ln <= i+myLinesToGet; ln++)
+                        {
+                            if (ln >= 0 && ln < myContent.Count)
+                            {
+                                bool b;
+                                takenLines.TryGetValue(ln, out b);
+                                takenLines[ln] = b || ln == i;
+                            }
+                        }
+                    }
+                }
+
+                var lines = new List<int>(takenLines.Keys);
+                lines.Sort();                
                 
+                var all = lines.ConvertAll(input => (takenLines[input] ? " " : "-") + myContent[input]);                
                 ContentChanged(this, new ContentChangedEventArgs(all));
             } catch (Exception e)
             {
@@ -49,5 +69,10 @@ namespace RegexLinesFilter
             }
         }
 
+
+        public void SetLinesToGet(int lines)
+        {
+            myLinesToGet = lines;
+        }
     }
 }
