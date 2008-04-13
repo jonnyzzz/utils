@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+   <title>Азбука Морзе</title>
+   <meta http-equiv="Content-Type" content="text/html;charset=windows-1251">
+   <script type="text/javascript" src="morze.js"></script>
+   <script>
+     function translate(form) {
+       form.output.value = JMZ.toMorze(form.input.value);
+     }
+
+     function translateBack(form) {
+       form.input.value = JMZ.fromMorze(form.output.value);
+     }
+   </script>
+  </head>  
+<body>
+
+<div style="width:30%; float:right;">
+	<table border="0" width="100%" align="center">
+	<tr align="center"><td><strong>Символ</strong></td><td><strong>Код Морзе</strong></td><td><strong><Напев></strong></td></tr>
+	<tr align="center"><td>A</td><td>&#149;&nbsp;&#150;</td><td>ай-даа</td></tr>
+	<tr align="center"><td>Б</td><td>&#150;&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</td><td>баа-ки-те-кут</td></tr>
+	<tr align="center"><td>В</td><td>&#149;&nbsp;&#150;&nbsp;&#150;</td><td>ви-даа-лаа</td></tr>
+	<tr align="center"><td>Г</td><td>&#150;&nbsp;&#150;&nbsp;&#149;</td><td>гаа-гаа-рин </td></tr>
+	<tr align="center"><td>Д</td><td>&#150;&nbsp;&#149;&nbsp;&#149;</td><td>доо-ми-ки</td></tr>
+	<tr align="center"><td>Е</td><td>&#149;</td><td>есть</td></tr>
+	<tr align="center"><td>Ж</td><td>&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;&#150;</td><td>жи-ви-те-таак</td></tr>
+	<tr align="center"><td>З</td><td>&#150;&nbsp;&#150;&nbsp;&#149;&nbsp;&#149;</td><td>заа-каа-ти-ки</td></tr>
+	<tr align="center"><td>И</td><td>&#149;&nbsp;&#149;</td><td>и-ди</td></tr>
+	<tr align="center"><td>Й</td><td>&#149;&nbsp;&#150;&nbsp;&#150;&nbsp;&#150;</td><td>йес-на па-ра</td></tr>
+	<tr align="center"><td>К</td><td>&#150;&nbsp;&#149;&nbsp;&#150;</td><td>каак-де-лаа?</td></tr>
+	<tr align="center"><td>Л</td><td>&#149;&nbsp;&#150;&nbsp;&#149;&nbsp;&#149;</td><td>лу-наа-ти-ки</td></tr>
+	<tr align="center"><td>М</td><td>&#150;&nbsp;&#150;</td><td>маа-маа</td></tr>
+	<tr align="center"><td>H</td><td>&#150;&nbsp;&#149;</td><td>но-ет</td></tr>
+	<tr align="center"><td>О</td><td>&#150;&nbsp;&#150;&nbsp;&#150;</td><td>оо-коо-лоо</td></tr>
+	<tr align="center"><td>П</td><td>&#149;&nbsp;&#150;&nbsp;&#150;&nbsp;&#149;</td><td>пи-лаа-поо-ёт</td></tr>
+	<tr align="center"><td>P</td><td>&#149;&nbsp;&#150;&nbsp;&#149;</td><td>ре-шаа-ет</td></tr>
+	<tr align="center"><td>С</td><td>&#149;&nbsp;&#149;&nbsp;&#149;</td><td>си-не-е</td></tr>
+	<tr align="center"><td>Т</td><td>&#150;</td><td>таак</td></tr>
+	<tr align="center"><td>У</td><td>&#149;&nbsp;&#149;&nbsp;&#150;</td><td>у-нес-лоо</td></tr>
+	<tr align="center"><td>Ф</td><td>&#149;&nbsp;&#149;&nbsp;&#150;&nbsp;&#149;</td><td>фи-ли-моон-чик</td></tr>
+	<tr align="center"><td>Х</td><td>&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</td><td>хи-ми-чи-те</td></tr>
+	<tr align="center"><td>Ц</td><td>&#150;&nbsp;&#149;&nbsp;&#150;&nbsp;&#149;</td><td>цаа-пли-наа-ши</td></tr>
+	<tr align="center"><td>Ч</td><td>&#150;&nbsp;&#150;&nbsp;&#150;&nbsp;&#149;</td><td>чаа-шаа-тоо-нет</td></tr>
+	<tr align="center"><td>Ш</td><td>&#150;&nbsp;&#150;&nbsp;&#150;&nbsp;&#150;</td><td>шаа-роо-ваа-рыы</td></tr>
+	<tr align="center"><td>Щ</td><td>&#150;&nbsp;&#150;&nbsp;&#149;&nbsp;&#150;</td><td>щаа-ваам-не-щаа</td></tr>
+	<tr align="center"><td>Ь</td><td>&#150;&nbsp;&#149;&nbsp;&#149;&nbsp;&#150;</td><td>тоо-мяг-кий-знаак</td></tr>
+	<tr align="center"><td>Ы</td><td>&#150;&nbsp;&#149;&nbsp;&#150;&nbsp;&#150;</td><td>ыы-не-наа-доо</td></tr>
+	<tr align="center"><td>Э</td><td>&#149;&nbsp;&#149;&nbsp;&#150;&nbsp;&#149;&nbsp;&#149;</td><td>э-ле-роо-ни-ки</td></tr>
+	<tr align="center"><td>Ю</td><td>&#149;&nbsp;&#149;&nbsp;&#150;&nbsp;&#150;</td><td>ю-ли-аа-наа</td></tr>
+	<tr align="center"><td>Я</td><td>&#149;&nbsp;&#150;&nbsp;&#149;&nbsp;&#150;</td><td>я-маал-я-маал</td></tr>
+	<tr align="center"><td>1</td><td>&#149;&nbsp;&#150;&nbsp;&#150;&nbsp;&#150;&nbsp;&#150;</td><td>и-тоо-лькоо-оо-днаа</td></tr>
+	<tr align="center"><td>2</td><td>&#149;&nbsp;&#149;&nbsp;&#150;&nbsp;&#150;&nbsp;&#150;</td><td>два не-хоо-роо-шоо</td></tr>
+	<tr align="center"><td>3</td><td>&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;&#150;&nbsp;&#150;</td><td>три те-бе-маа-лоо</td></tr>
+	<tr align="center"><td>4</td><td>&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;&#150;</td><td>че-тве-ри-те-каа</td></tr>
+	<tr align="center"><td>5</td><td>&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</td><td>пя-ти-ле-ти-е</td></tr>
+	<tr align="center"><td>6</td><td>&#150;&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</td><td>поо-шес-ти бе-ри</td></tr>
+	<tr align="center"><td>7</td><td>&#150;&nbsp;&#150;&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</td><td>даа-даа-се-ме-рит</td></tr>
+	<tr align="center"><td>8</td><td>&#150;&nbsp;&#150;&nbsp;&#150;&nbsp;&#149;&nbsp;&#149;</td><td>воо-сьмоо-гоо-и-ди</td></tr>
+	<tr align="center"><td>9</td><td>&#150;&nbsp;&#150;&nbsp;&#150;&nbsp;&#150;&nbsp;&#149;</td><td>ноо-наа-ноо-наа-ми</td></tr>
+	<tr align="center"><td>0</td><td>&#150;&nbsp;&#150;&nbsp;&#150;&nbsp;&#150;&nbsp;&#150;</td><td>нооль-тоо-оо-коо-лоо</td></tr>
+	<tr align="center"><td>Точка</td><td>&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</td><td></td></tr>
+	<tr align="center"><td>Запятая</td><td>&#149;&nbsp;&#150;&nbsp;&#149;&nbsp;&#150;&nbsp;&#149;&nbsp;&#150;</td><td></td></tr>
+	<tr align="center"><td>?</td><td>&#149;&nbsp;&#149;&nbsp;&#150;&nbsp;&#150;&nbsp;&#149;&nbsp;&#149;</td><td>у-не-слО дО-ми-ки</td></tr>
+	<tr align="center"><td>!</td><td>&#150;&nbsp;&#150;&nbsp;&#149;&nbsp;&#149;&nbsp;&#150;&nbsp;&#150;</td><td></td></tr>
+	<tr align="center"><td>Знак&nbsp;раздела</td><td>&#150;&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;&#150;</td><td>ра-зде-ли-те нас</td></tr>
+	<tr align="center"><td>Ошибка</td><td>&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</td><td></td></tr>
+	<tr align="center"><td>@</td><td>&#149;&nbsp;&#150;&nbsp;&#150;&nbsp;&#149;&nbsp;&#150;&nbsp;&#149;</td><td></td></tr>
+	</table>
+</div>
+
+<div style="width:68%">
+	<h3>Перевод в Морзянку:</h3>
+	<form action="" method="post" name=byn>
+		<textarea  name=input wrap=physical id=name style="width:450px; height:200px; "></textarea>
+		<INPUT onclick="javascript:translate(this.form)"  type=button value="Morze">
+		<p></p>
+		<TEXTAREA name=output wrap=physical  style="width:450px; height:200px; "></TEXTAREA>
+		<INPUT onclick="javascript:translateBack(this.form)" type=button value="Back">
+	</form>
+</div>
+
+
+
+</body>
+</html>
