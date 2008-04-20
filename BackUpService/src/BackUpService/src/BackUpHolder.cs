@@ -10,17 +10,26 @@ namespace BackUpService
     {
       Config instance = Config.Instance;
 
+      BackUpAction myBackupAction = new BackUpAction();
+      BackupUploader backupUploader = new BackupUploader(instance.Upload);
+      myBackupAction.OnArtifact += backupUploader.PublishBackup;
+
       foreach (Time up in instance.BackUps)
       {
         BackUpSleepThread item = new BackUpSleepThread(up.Hour, up.Minute);
-        item.Time += BackUpAction.Action;
+        item.Time += myBackupAction.Action;
         item.Start();
         myServices.Add(item);
       }
+
       if (Config.Instance.Wait != null)
       {
-        BackUpThreadBase th = new UploadWaitBackUpSleepThread();
-        th.Time += BackUpAction.Action;
+        BackupUploader delayedUploader = new BackupUploader(instance.DelayedUpload);
+        UploadWaitBackUpSleepThread th = new UploadWaitBackUpSleepThread(Config.Instance.DelayedUploadQueueLimit);
+
+        delayedUploader.OnArtifact += th.ArtifactUploaded;
+        backupUploader.OnArtifact += th.ArtifactReady;
+
         th.Start();
         myServices.Add(th);
       }

@@ -1,23 +1,19 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using ICSharpCode.SharpZipLib.Zip;
 
 namespace BackUpService
 {
-  public static class BackUpAction
+  public class BackUpAction : ArtifactReadyBase
   {
-    private const long K = 1024;
-    private const long M = K*K;
-
-    //todo: As parameter
-    private const long RESERVED_SPACE = 300*M;
-
     private static readonly object LOCK = new object();
+    private long myFileId = 0;
 
     private static string GetTmpDir()
     {
-      return Path.Combine(TempFolder, "backup_" +DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"));
+      return Path.Combine(TempFolder, "backup_" + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"));
     }
 
     private static string TempFolder
@@ -25,155 +21,57 @@ namespace BackUpService
       get { return Config.Instance.TempFolder; }
     }
 
-    public static void Action(object sender, EventArgs args)
+    public void Action(object sender, EventArgs args)
     {
-      lock(LOCK) {
- 
-      string tmpFile = GetTmpDir();
-      if (!Directory.Exists(tmpFile))
-        Directory.CreateDirectory(tmpFile);
-
-      string tmpFileOutput = tmpFile + "_output";
-      if (!Directory.Exists(tmpFileOutput))
-        Directory.CreateDirectory(tmpFileOutput);
-
-      try
+      lock (LOCK)
       {
+        long id = Interlocked.Increment(ref myFileId);
 
-        Logger.LogMessage("Begin backing up");
-     
-        FastZip zip = new FastZip();
-        zip.CreateEmptyDirectories = true;        
+        string tmpFile = GetTmpDir();
+        if (!Directory.Exists(tmpFile))
+          Directory.CreateDirectory(tmpFile);
 
-        List<string> zipFiles = new List<string>();
-        foreach (string folder in Config.Instance.BackupFolders)
-        {
-          string zipFile = Path.Combine(tmpFile, Path.GetFileName(folder) + ".zip");
-          zip.CreateZip(zipFile, folder, true, null);
-          zipFiles.Add(zipFile);
-        }
-        string backUp = Path.Combine(tmpFileOutput, "backup_" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".zip");
-
-        Logger.LogMessage("Create Backup file");
-
-        FastZip z = new FastZip();
-        z.CreateZip(backUp, tmpFile, true, null);
-
-        foreach (string file in zipFiles)
-        {
-          File.Delete(file);
-        }
-        
-        Logger.LogMessage("Publishing backup");
-        PublishBackup(backUp);
-
-        File.Delete(backUp);
-      } finally
-      {                
-        Directory.Delete(tmpFile);
-        Directory.Delete(tmpFileOutput);
-      }
-      }
-    }
-
-    private static bool CheckSpace(string folder, long space)
-    {
-      try
-      {
-        DirectoryInfo di = new DirectoryInfo(folder);
-        foreach (DriveInfo drive in DriveInfo.GetDrives())
-        {
-          if (di.FullName.StartsWith(drive.RootDirectory.FullName, StringComparison.CurrentCultureIgnoreCase))
-          {
-            return drive.AvailableFreeSpace - RESERVED_SPACE> space;
-          }
-        }
-        return true;
-      } catch(Exception e)
-      {
-        Logger.LogMessage("Failed to CheckSpace on {0} with space {1}mb", folder, (double)space/M);
-        Logger.Log(e);
-        return true;
-      }
-    }
-
-    private static long DirectorySize(string dir)
-    {
-      long size = 0;
-      foreach (string childDir in Directory.GetDirectories(dir))
-      {
-        size += DirectorySize(childDir);
-      }
-
-      foreach (string file in Directory.GetFiles(dir))
-      {
-        size += new FileInfo(file).Length;
-      }
-      return size;      
-    }
-
-    private static void PublishBackup(string file)
-    {
-      long size = new FileInfo(file).Length;
-
-
-      foreach (string upload in Config.Instance.Upload)
-      {
-        if (!CheckSpace(upload, size * 3))
-        {
-          RemoveOlderEntries(upload, size * 5);
-        }
+        string tmpFileOutput = tmpFile + "_output";
+        if (!Directory.Exists(tmpFileOutput))
+          Directory.CreateDirectory(tmpFileOutput);
 
         try
         {
-          Copy(file, Path.Combine(upload, Path.GetFileName(file)));
-        } catch(Exception e)
+          Logger.LogMessage("Begin backing up");
+
+          FastZip zip = new FastZip();
+          zip.CreateEmptyDirectories = true;
+
+          List<string> zipFiles = new List<string>();
+          foreach (string folder in Config.Instance.BackupFolders)
+          {
+            string zipFile = Path.Combine(tmpFile, Path.GetFileName(folder) + ".zip");
+            zip.CreateZip(zipFile, folder, true, null);
+            zipFiles.Add(zipFile);
+          }
+          string backUp = Path.Combine(tmpFileOutput, "backup_" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".zip");
+
+          Logger.LogMessage("Create Backup file");
+
+          FastZip z = new FastZip();
+          z.CreateZip(backUp, tmpFile, true, null);
+
+          foreach (string file in zipFiles)
+          {
+            File.Delete(file);
+          }
+
+          Logger.LogMessage("Publishing backup");
+          FireAtrifact(id, backUp, true);
+
+          File.Delete(backUp);
+        }
+        finally
         {
-          Logger.LogMessage("Failed to copy {0} to {1}", file, upload);
-          Logger.Log(e);
-          continue;          
+          Directory.Delete(tmpFile);
+          Directory.Delete(tmpFileOutput);
         }
       }
-    }
-
-    private static void RemoveOlderEntries(string dir, long sizeToHave)
-    {
-      List<Pair<DateTime, string>> files = new List<Pair<DateTime, string>>();
-      foreach (string file in Directory.GetFiles(dir))
-      {
-        if (new FileInfo(file).Length > 20 * M)
-        {
-          files.Add(Pair.Create(File.GetLastWriteTime(file), file));
-        }
-      }
-
-      files.Sort(Comparison);
-
-      long size = 0;
-      foreach (Pair<DateTime, string> file in files)
-      {
-        Logger.LogMessage("Delete {0} to free space", file);
-        FileInfo info = new FileInfo(file.B);
-        size += info.Length;
-        info.Delete();
-
-        if (size > sizeToHave)
-          break;
-      }      
-    }
-
-    //todo: Test!
-    public static int Comparison(Pair<DateTime, string> f1, Pair<DateTime, string> f2)
-    {
-      DateTime d1 = f1.A;
-      DateTime d2 = f2.A;
-
-      return d1.CompareTo(d2);      
-    }
-
-    private static void Copy(string file, string dest)
-    {
-      File.Copy(file, dest, true);
     }
   }
 }

@@ -6,7 +6,7 @@ namespace BackUpService
   public abstract class BackUpThreadBase
   {
     protected volatile bool myRunning = true;
-    protected readonly Thread myThread;
+    private readonly Thread myThread;
     public event EventHandler<EventArgs> Time;
 
     protected BackUpThreadBase()
