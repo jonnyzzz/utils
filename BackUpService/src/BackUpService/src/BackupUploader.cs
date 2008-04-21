@@ -62,7 +62,7 @@ namespace BackUpService
           continue;
         }
 
-        FireAtrifact(fileId, dest, true);
+        FireAtrifact(fileId, dest, false);
       }
     }
 
@@ -82,7 +82,7 @@ namespace BackUpService
       long size = 0;
       foreach (Pair<DateTime, string> file in files)
       {
-        Logger.LogMessage("Delete {0} to free space", file);
+        Logger.LogMessage("Delete {0} to free space", file.B);
         FileInfo info = new FileInfo(file.B);
         size += info.Length;
         info.Delete();

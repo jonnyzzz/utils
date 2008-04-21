@@ -21,8 +21,11 @@ namespace BackUpService
 
     private void UploadWaitBackUpSleepThread_Time(object sender, EventArgs e)
     {
+      Logger.LogMessage("UploadWaitBackUpSleepThread_Time");
+
       if (OnArtifactReady == null)
         return;
+
       ICollection<UploadInfo> files;
       lock (myUploadQueue)
       {
@@ -47,6 +50,7 @@ namespace BackUpService
 
     public void ArtifactReady(long fileId, string file, bool temp)
     {
+      Logger.LogMessage("ArtifactReady");
       if (temp)
         return;
 
@@ -57,9 +61,8 @@ namespace BackUpService
           return;
 
         if (myUploadQueue.Count >= myUploadLimit)
-        {
           myUploadQueue.RemoveAt(0);
-        }
+
         myUploadQueue.Add(info);
 
         myFilesReady.Set();
@@ -72,9 +75,7 @@ namespace BackUpService
       {
         UploadInfo info = new UploadInfo(fileId, file);
         if (myUploadQueue.Contains(info))
-        {
           myUploadQueue.Remove(info);
-        }
       }
     }
 
@@ -86,10 +87,16 @@ namespace BackUpService
 
       foreach (string dir in wait)
       {
-        if (Directory.Exists(dir))
-          return true;
+        try
+        {
+          if (Directory.Exists(dir))
+            return true;
+        } catch
+        {
+          continue;
+        }
       }
-      return true;
+      return false;
     }
 
     protected override void Do()
@@ -130,20 +137,20 @@ namespace BackUpService
         }
 
         if (waitEvent)
-        {
           myFilesReady.WaitOne();
-        }
 
         try
         {
           if (Check())
             return;
         }
-        catch
-        {
-          Thread.Sleep(new TimeSpan(0, 5, 0));
-          continue;
+        catch(Exception e)
+        {        
+          Logger.Log(e);
         }
+
+        Thread.Sleep(new TimeSpan(0, 5, 0));
+        continue;
       }
     }
 
