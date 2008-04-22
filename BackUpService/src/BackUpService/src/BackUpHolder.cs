@@ -27,6 +27,7 @@ namespace BackUpService
         BackupUploader delayedUploader = new BackupUploader(instance.DelayedUpload);
         UploadWaitBackUpSleepThread th = new UploadWaitBackUpSleepThread(Config.Instance.DelayedUploadQueueLimit);
 
+        th.OnArtifactReady += delayedUploader.PublishBackup;
         delayedUploader.OnArtifact += th.ArtifactUploaded;
         backupUploader.OnArtifact += th.ArtifactReady;
 

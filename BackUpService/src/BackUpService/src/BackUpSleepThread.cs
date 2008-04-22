@@ -11,7 +11,7 @@ namespace BackUpService
     public BackUpSleepThread(int h, int m)
     {
       myHour = h;
-      myMinute = m;      
+      myMinute = m;
     }
 
     private static int ModDist(int time, int value, int mod)
@@ -26,29 +26,29 @@ namespace BackUpService
     protected override void Do()
     {
       while (myRunning)
-      {        
+      {
         try
         {
-            DateTime stop = DateTime.Now + new TimeSpan(myHour, myMinute, 0);
-             
-            Logger.LogMessage("Time to backup: {0} ( h{1} m{2})", stop, myHour, myMinute);
- 
-            Thread.Sleep(new TimeSpan(myHour, myMinute, 0));  
-   
-            try
-            {
-              Logger.LogMessage("Time. Backup started.");
-              Fire();
-            }
-            catch (Exception e)
-            {
-              Logger.Log(e);
-            }
-            finally
-            {
-              Logger.LogMessage("Time. Backup finished.");
-              Thread.Sleep(new TimeSpan(0, 0, 59));
-            }
+          try
+          {
+            Logger.LogMessage("Time. Files Backup started.");
+            Fire();
+          }
+          catch (Exception e)
+          {
+            Logger.Log(e);
+          }
+          finally
+          {
+            Logger.LogMessage("Time. Files Backup finished.");
+            Thread.Sleep(new TimeSpan(0, 0, 59));
+          }
+
+          DateTime stop = DateTime.Now + new TimeSpan(myHour, myMinute, 0);
+
+          Logger.LogMessage("Next time to backup: {0} (+ {1}h {2}m)", stop, myHour, myMinute);
+
+          Thread.Sleep(new TimeSpan(myHour, myMinute, 0));
         }
         catch (ThreadInterruptedException)
         {

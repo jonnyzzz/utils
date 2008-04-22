@@ -20,9 +20,7 @@ namespace BackUpService
     }
 
     private void UploadWaitBackUpSleepThread_Time(object sender, EventArgs e)
-    {
-      Logger.LogMessage("UploadWaitBackUpSleepThread_Time");
-
+    {      
       if (OnArtifactReady == null)
         return;
 
@@ -31,15 +29,17 @@ namespace BackUpService
       {
         files = new List<UploadInfo>(myUploadQueue);
       }
-
+      
       foreach (UploadInfo info in files)
       {
         try
         {
           OnArtifactReady(info.Id, info.File, false);
         }
-        catch
+        catch(Exception ee) 
         {
+          Logger.LogMessage("UploadWaitBackUpSleepThread_Time@Failed on {0} with", info.File);
+          Logger.Log(ee);
           lock (myUploadQueue)
           {
             myUploadQueue.Remove(info);
@@ -107,18 +107,13 @@ namespace BackUpService
         {
           WaitInternal();
           try
-          {
-            Logger.LogMessage("Resource backup started uploader.");
+          {            
             Fire();
           }
           catch (Exception e)
           {
             Logger.Log(e);
-          }
-          finally
-          {
-            Logger.LogMessage("Resource. Backup finished.");
-          }
+          }          
         }
         catch (ThreadInterruptedException)
         {
