@@ -12,7 +12,7 @@ namespace javaTime
 
         Console.Out.WriteLine("time = {0}", guid);
 
-        Clipboard.SetText(guid);
+        Clipboard.SetText(guid.ToUpper());
     } 
   }
 }
