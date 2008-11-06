@@ -24,7 +24,6 @@ namespace EugenePetrenko.Encodings {
         if (dest == null) 
           throw new ArgumentException("dest");
 
-
         using (var s = new StreamReader(args[2], source))
         {
           
@@ -32,7 +31,8 @@ namespace EugenePetrenko.Encodings {
           {
             for (string c; ((c = s.ReadLine()) != null);)
             {
-              var array = dest.GetBytes(c);
+              Console.Out.WriteLine(">>{0}", c);
+              var array = dest.GetBytes(c + Environment.NewLine);
               d.Write(array, 0, array.Length);
             }
           }
