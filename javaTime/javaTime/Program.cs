@@ -30,6 +30,12 @@ namespace javaTime
           DateTime time = TimeUtil.FromJavaTime(v);
           Console.Out.WriteLine("time = {0}", time);
         }
+      } else if (args.Length == 2 && args[0] == "back") {
+
+        long time = TimeUtil.ToJavaTime(DateTime.Parse(args[1]));
+        Console.Out.WriteLine("time = {0}", time);
+
+        Clipboard.SetText(time.ToString());
       }
     }
   }
