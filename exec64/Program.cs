@@ -40,12 +40,12 @@ namespace exec64
 //        var error = CopyThread(start.StandardError, Console.Error);
 //        var input = CopyThread(Console.In, start.StandardInput);
 
-        start.WaitForExit();
+//        start.WaitForExit();
 
 //        input.Interrupt();
 //        error.Join();
 //        output.Join();
-        return start.ExitCode;
+        return 0;
       } catch (Exception e)
       {
         Console.Error.WriteLine("Error: " + e);
