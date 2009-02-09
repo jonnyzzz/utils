@@ -41,8 +41,6 @@ namespace BackUpService
     [XmlArray("delayed-uploads")] [XmlArrayItem("upload")] public string[] DelayedUpload;
 
     [XmlArray("Waits")] [XmlArrayItem("dir")] public string[] Wait;
-    [XmlElement("WaitSleep")] public Time WaitSleep;
-
 
     private static Config Load()
     {
@@ -62,7 +60,6 @@ namespace BackUpService
       tmp.LogFile = "log file";
       tmp.TempFolder = "tempFolder";
       tmp.Upload = new string[] {"upload"};
-      tmp.WaitSleep = new Time(0, 0);
       tmp.Wait = new string[] {"will wait till resource available"};
       tmp.DelayedUpload = new string[] {"delayed uploads here"};
       using (Stream s = File.Create(path + ".example"))
