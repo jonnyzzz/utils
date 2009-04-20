@@ -6,7 +6,7 @@ using System.Text;
 using EugenePetrenko.BibParser.AuxParser;
 using EugenePetrenko.BibParser.Reader;
 
-namespace BibTexE
+namespace EugenePetrenko.BibTexE
 {
   public class Program
   {
