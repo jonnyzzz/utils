@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibParser", "BibParser\BibP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibParser.Tests", "bibParser.Tests\BibParser.Tests.csproj", "{76D8A4A7-0C22-4710-9903-A7CE971BA97A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibTexE", "BibTexE\BibTexE.csproj", "{048C3BAB-88B1-40AC-B388-FFB0DAF28750}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{76D8A4A7-0C22-4710-9903-A7CE971BA97A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{76D8A4A7-0C22-4710-9903-A7CE971BA97A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{76D8A4A7-0C22-4710-9903-A7CE971BA97A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{048C3BAB-88B1-40AC-B388-FFB0DAF28750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{048C3BAB-88B1-40AC-B388-FFB0DAF28750}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{048C3BAB-88B1-40AC-B388-FFB0DAF28750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{048C3BAB-88B1-40AC-B388-FFB0DAF28750}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
