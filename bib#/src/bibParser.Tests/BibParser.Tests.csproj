@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\AuxReaderTest.cs" />
     <Compile Include="src\BibCommentRemoverTests.cs" />
     <Compile Include="src\BibTexReaderBracesTest.cs" />
     <Compile Include="src\BibTexReaderPair.cs" />
