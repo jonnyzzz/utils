@@ -19,10 +19,12 @@ namespace EugenePetrenko.BibParser.Reader
     {
       var data = new List<RawRecord>();
       myLex.ReadAllWritespaces();
-      if (myLex.IsNext('@'))
+      while (myLex.IsNext('@'))
       {
         data.Add(ParseBibRecord());
+        myLex.ReadAllWritespaces();
       }
+      myLex.ReadAllWritespaces();
       return data;
     }
 
@@ -34,6 +36,8 @@ namespace EugenePetrenko.BibParser.Reader
       myLex.AssertChar(',');
 
       var pairs = ParsePairs().ToList();
+
+      myLex.ReadAllWritespaces();
 
       myLex.AssertChar('}');
 

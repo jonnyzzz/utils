@@ -45,13 +45,13 @@ namespace BibTexE
         bibRecords.AddRange(new BibReader(new BibLexer(new BibCommentRemover(tw))).Parse());
       }
 
-      Console.Out.WriteLine("Found {0} definitions", bibRecords);
+      Console.Out.WriteLine("Found {0} definitions", bibRecords.Count);
 
       bibRecords.RemoveAll(x => !refs.Contains(x.RefName));
 
       if (bibRecords.Count != refs.Count)
       {
-        foreach (var rf in refs.Where(x=>bibRecords.Exists(xx=>xx.RefName == x)))
+        foreach (var rf in refs.Where(x=>!bibRecords.Exists(xx=>xx.RefName == x)))
         {
           Console.Out.WriteLine("Undefined refence {0}", rf);
         }

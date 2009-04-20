@@ -15,6 +15,24 @@ namespace EugenePetrenko.BibParser.Tests
     {
       ParseRecordeTest("@ARTICLE{zzz,a=b}", "ARTICLE", "zzz", "a=b");
     }
+
+    [Test]
+    public void Record_Spaces()
+    {
+      ParseRecordeTest("@ARTICLE{zzz, \r\n   a=b   ,   \r\n c=d     }", "ARTICLE", "zzz", "a=b", "c=d");
+    }
+
+    [Test]
+    public void Record_Simple_NewLine()
+    {
+      ParseRecordeTest("@ARTICLE{zzz,a=b\r\n}", "ARTICLE", "zzz", "a=b");
+    }
+
+    [Test]
+    public void Record_Simple_NewLine2()
+    {
+      ParseRecordeTest("@ARTICLE{zzz,a={b}\r\n}", "ARTICLE", "zzz", "a=b");
+    }
     
     [Test]
     public void Record_2_argz()
