@@ -59,6 +59,9 @@ namespace BibTexE
 
       //TODO: Generate code
 
+      //TODO: Sort references
+
+      //TODO: Write bibitems
 
       return 0;
     }
