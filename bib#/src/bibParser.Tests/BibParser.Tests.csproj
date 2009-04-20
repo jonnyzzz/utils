@@ -53,6 +53,7 @@
     <Compile Include="src\BibCommentRemoverTests.cs" />
     <Compile Include="src\BibTexReaderBracesTest.cs" />
     <Compile Include="src\BibTexReaderPair.cs" />
+    <Compile Include="src\BibTexRecordListTest.cs" />
     <Compile Include="src\BibTexRecordTest.cs" />
     <Compile Include="src\BibTextReaderTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

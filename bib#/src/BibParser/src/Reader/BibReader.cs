@@ -21,7 +21,11 @@ namespace EugenePetrenko.BibParser.Reader
       myLex.ReadAllWritespaces();
       while (myLex.IsNext('@'))
       {
-        data.Add(ParseBibRecord());
+        var item = ParseBibRecord();
+        if (item != null)
+        {
+          data.Add(item);
+        }
         myLex.ReadAllWritespaces();
       }
       myLex.ReadAllWritespaces();
@@ -31,18 +35,27 @@ namespace EugenePetrenko.BibParser.Reader
     public RawRecord ParseBibRecord()
     {
       string type = ParseArticleType();
-      myLex.AssertChar('{');
-      string refName = myLex.ReadUntil(',').Trim();
-      myLex.AssertChar(',');
 
-      var pairs = ParsePairs().ToList();
+      if (type != "comment")
+      {
+        myLex.AssertChar('{');
+        string refName = myLex.ReadUntil(',').Trim();
+        myLex.AssertChar(',');
 
-      myLex.ReadAllWritespaces();
+        var pairs = ParsePairs().ToList();
 
-      myLex.AssertChar('}');
+        myLex.ReadAllWritespaces();
 
-      myLex.ReadAllWritespaces();
-      return new RawRecord(refName, type, pairs);
+        myLex.AssertChar('}');
+
+        myLex.ReadAllWritespaces();
+        return new RawRecord(refName, type, pairs);
+      } else
+      {
+        ParseBraces();
+        myLex.ReadAllWritespaces();
+        return null;
+      }
     }
 
     public string ParseArticleType()

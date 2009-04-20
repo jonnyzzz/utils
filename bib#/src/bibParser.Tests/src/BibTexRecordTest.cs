@@ -9,7 +9,6 @@ namespace EugenePetrenko.BibParser.Tests
   [TestFixture]
   public class BibTexRecordTest : BibTextReaderTestBase
   {
-
     [Test]
     public void Record_Simple()
     {
