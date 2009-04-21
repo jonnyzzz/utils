@@ -22,7 +22,7 @@ namespace EugenePetrenko.BibParser.AuxParser
       {
         var START = @"\citation{";
         if (s.StartsWith(START))
-          result.UnionWith(s.Substring(START.Length).Trim().TrimEnd('}').Split(',').Select(x => x.Trim()));
+          result.UnionWith(s.Substring(START.Length).Trim().Split('}')[0].Split(',').Select(x => x.Trim()));
       }
       return result;
     }

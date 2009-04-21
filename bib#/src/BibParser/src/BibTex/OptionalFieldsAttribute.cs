@@ -5,11 +5,11 @@ namespace EugenePetrenko.BibParser.BibTex
 {
   public class OptionalFieldsAttribute : Attribute
   {
-    private readonly BibRecordFields[] myFields;
+    private readonly BibField[] myField;
 
-    public OptionalFieldsAttribute(params BibRecordFields[] fields)
+    public OptionalFieldsAttribute(params BibField[] field)
     {
-      myFields = fields;
+      myField = field;
     }
   }
 }

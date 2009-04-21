@@ -43,6 +43,12 @@ namespace EugenePetrenko.BibParser.Tests
     }
     
     [Test]
+    public void Test_Multi_x()
+    {
+      DoTest(@"\citation{aaa,bbb} fooo", "aaa", "bbb");
+    }
+
+    [Test]
     public void Test_Multi_Others_Same()
     {
       DoTest(@"\citation{zzz,yyy}" + Environment.NewLine + @"1231321" + "\r\n" + @"\citation{zzz,yyy}", "yyy", "zzz");

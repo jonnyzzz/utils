@@ -1,4 +1,6 @@
-﻿namespace BibParser
+﻿using EugenePetrenko.BibParser.BibTex;
+
+namespace BibParser
 {
   public enum BibRecordFields
   {
@@ -6,10 +8,6 @@
   }
 
 
-  public enum BibRecordType
-  {
-
-  }
   public interface IBibRecord
   {
     BibRecordType Type { get; }

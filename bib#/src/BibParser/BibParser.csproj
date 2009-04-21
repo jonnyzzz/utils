@@ -46,11 +46,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\AuxParser\AuxReader.cs" />
+    <Compile Include="src\Biblio\BiblioWriter.cs" />
+    <Compile Include="src\BibTex\BibRecord.cs" />
     <Compile Include="src\Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\BibTex\DescriptionAttribute.cs" />
     <Compile Include="src\BibTex\OptionalFieldsAttribute.cs" />
     <Compile Include="src\BibTex\RequiredFieldsAttribute.cs" />
+    <Compile Include="src\Formatter\IBibFormatter.cs" />
     <Compile Include="src\Reader\BibCommentRemover.cs" />
     <Compile Include="src\Reader\BibReader.cs" />
     <Compile Include="src\Reader\BibLexer.cs" />
