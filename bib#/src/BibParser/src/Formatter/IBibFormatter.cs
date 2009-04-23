@@ -1,29 +1,13 @@
 using System;
-using System.Runtime.Serialization;
+using EugenePetrenko.BibParser.BibTex;
 using EugenePetrenko.BibParser.Reader;
-using EugenePetrenko.BibParser.Util;
 
 namespace EugenePetrenko.BibParser.Formatter
 {
   public interface IBibFormatter
   {
-    bool Matches(RawRecord record);
+    bool Matches(BibRecord record);
 
-    Pair<string, string> Format(RawRecord record);
-  }
-
-  public class ArticleFormatter : IBibFormatter
-  {
-    public bool Matches(RawRecord record)
-    {
-      return "article".Equals(record.Type, StringComparison.InvariantCultureIgnoreCase);
-    }
-
-    public Pair<string, string> Format(RawRecord record)
-    {
-      string key = record.RefName;
-//      string value = 
-      return null;
-    }
+    FormattedRefernce Format(BibRecord record);
   }
 }

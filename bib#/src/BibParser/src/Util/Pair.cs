@@ -26,6 +26,13 @@ namespace EugenePetrenko.BibParser.Util
 
   public static class Util
   {
+    public static T GetByField<T>(this Enum field)
+    {
+      var enumType = field.GetType();
+      var fieldName = Enum.GetName(enumType, field);
+      return (T)enumType.GetField(fieldName).GetCustomAttributes(typeof(T), true)[0];
+    }
+
     public static string JoinString<T>(this IEnumerable<T> data, Func<T,string> toString, string sep)
     {
       bool isFirst = true;

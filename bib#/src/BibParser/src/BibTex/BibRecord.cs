@@ -1,51 +1,12 @@
 using System;
-using EugenePetrenko.BibParser.Reader;
+using System.Collections.Generic;
 using System.Linq;
+using EugenePetrenko.BibParser.Reader;
+using EugenePetrenko.BibParser.Util;
 
 namespace EugenePetrenko.BibParser.BibTex
 {
-  public enum BibRecordType
-  {
-    [RequiredFields(BibField.Author, BibField.Journal, BibField.Pages, BibField.Title, BibField.Volume, BibField.Year)]
-    [OptionalFields(BibField.Language)]
-    ARTICLE
-
-  }
-
-  public enum BibField
-  {  
-    Author, 
-    Title,
-    Journal,
-    Year,
-    Volume,
-    Pages,
-    Language,
-  }
-
-  public class FieldNameAttribute : Attribute
-  {
-    private readonly string myName;
-
-    public FieldNameAttribute(string name)
-    {
-      myName = name;
-    }
-
-    public string Name
-    {
-      get { return myName; }
-    }
-  }
-
-
-  public interface IBibRecord
-  {
-    string[] Authors { get; }
-    
-  }
-
-  public class BibRecord //: IBibRecord
+  public class BibRecord
   {
     private readonly RawRecord myData;
 
@@ -54,19 +15,84 @@ namespace EugenePetrenko.BibParser.BibTex
       myData = data;
     }
 
-    private static FieldNameAttribute GetByField(BibField field)
-    {
-      var enumType = field.GetType();
-      var fieldName = Enum.GetName(enumType, field);
-      return (FieldNameAttribute) enumType.GetField(fieldName).GetCustomAttributes(typeof (FieldNameAttribute), true)[0];
-    }
-
     private string GetKey(BibField field)
     {
       return
         myData.Pairs
-        .Where(x => x.First.Equals(GetByField(field).Name, StringComparison.InvariantCultureIgnoreCase))
-        .Single().Second;
+          .Where(
+          x => x.First.Equals(field.GetByField<FieldNameAttribute>().Name, StringComparison.InvariantCultureIgnoreCase))
+          .Single().Second;
+    }
+
+    public IEnumerable<BibAuthor> Authors
+    {
+      get
+      {
+        return GetKey(BibField.Author)
+          .Split(new[] {"and"}, StringSplitOptions.RemoveEmptyEntries)
+          .Select(x => new BibAuthor(x.Trim()));
+      }
+    }
+
+    public string Title
+    {
+      get { return GetKey(BibField.Title); }
+    }
+
+    public string RefName
+    {
+      get { return myData.RefName; }
+    }
+
+    public BibRecordType Type
+    {
+      get
+      {
+        string type = myData.Type;
+        foreach (BibRecordType value in Enum.GetValues(typeof(BibRecordType)))
+        {
+          if (type.Equals(value.GetByField<FieldNameAttribute>().Name, StringComparison.InvariantCultureIgnoreCase))
+          {
+            return value;
+          }
+        }
+        throw new ParseException(string.Format("Unable to find '{0}' record type", type));
+      }
+    }
+
+    public string Journal
+    {
+      get { return GetKey(BibField.Journal); }
+    }
+
+    public string Pages
+    {
+      get { return GetKey(BibField.Pages); }
+    }
+
+    public string Year
+    {
+      get { return GetKey(BibField.Year); }
+    }
+
+    public string Number
+    {
+      get { return GetKey(BibField.Number); }
+    }
+
+    public string Volume
+    {
+      get { return GetKey(BibField.Volume); }
+    }
+
+    public string URL
+    {
+      get { return GetKey(BibField.Url); }
+    }
+
+    public bool IsRussian()
+    {
+      throw new NotImplementedException();
     }
   }
 }

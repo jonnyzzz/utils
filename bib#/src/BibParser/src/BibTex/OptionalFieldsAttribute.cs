@@ -1,5 +1,4 @@
 using System;
-using BibParser;
 
 namespace EugenePetrenko.BibParser.BibTex
 {
