@@ -29,6 +29,8 @@ namespace javaTime
         {
           DateTime time = TimeUtil.FromJavaTime(v);
           Console.Out.WriteLine("time = {0}", time);
+
+          Clipboard.SetText(time.ToString());
         }
       } else if (args.Length == 2 && args[0] == "back") {
 
