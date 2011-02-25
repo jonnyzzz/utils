@@ -10,44 +10,30 @@ namespace ccimage
 {
   class Program
   {
-    private class Args
-    {
-      private readonly List<String> myArgs;
-
-      public Args(IEnumerable<string> args)
-      {
-        myArgs = new List<string>(args);
-      }
-
-      public string this[int i]
-      {
-        get
-        {
-          try
-          {
-            return myArgs[i];
-          } catch {
-            return null;
-          }
-        }
-      }
-
-      public bool Contains(string key)
-      {
-        return myArgs.Any(arg => arg.Equals(key, StringComparison.InvariantCultureIgnoreCase));
-      }
-    }
+    private readonly Args args;
 
     [STAThread]
     public static int Main(string[] args)
     {
-      return Main(new Args(args));
+      return new Program(new Args(args)).Main();
     }
 
-    private static int Main(Args args)
+    public Program(Args args)
+    {
+      this.args = args;
+    }
+
+    private int Main()
     {
       Console.Out.WriteLine("Utility to save images from Clipboard.");
       Console.Out.WriteLine("(C) 2011 Eugene Petrenko.");
+
+      Console.Out.WriteLine("Usage: ");
+      Console.Out.WriteLine(" ccimage.exe [-show] [-dir=<dir>]");
+      Console.Out.WriteLine("         -show        show captured image");
+      Console.Out.WriteLine("         -dir=<dir>   saves image to specified dir instead of working dir");
+      Console.Out.WriteLine("");
+      Console.Out.WriteLine("  captured image path will be put into clipboard.");
 
       Image image = Clipboard.GetImage();
       if (image == null)
@@ -79,9 +65,9 @@ namespace ccimage
       return 0;
     }
 
-    private static string GetFile(string ext)
+    private string GetFile(string ext)
     {
-      string dir = Environment.CurrentDirectory;
+      string dir = args.Get("dir", Environment.CurrentDirectory);
       int cnt = 0;
       while (true)
       {
@@ -90,6 +76,49 @@ namespace ccimage
         cnt++;
         cnt++;
       }      
+    }
+  }
+
+  public class Args
+  {
+    private readonly List<String> myArgs;
+
+    public Args(IEnumerable<string> args)
+    {
+      myArgs = new List<string>(args);
+    }
+
+    public string this[int i]
+    {
+      get
+      {
+        try
+        {
+          return myArgs[i];
+        }
+        catch
+        {
+          return null;
+        }
+      }
+    }
+
+    public bool Contains(string key)
+    {
+      return myArgs.Any(arg => arg.Equals("-" + key, StringComparison.InvariantCultureIgnoreCase));
+    }
+
+    public string Get(string key, string def)
+    {
+      string lookup = "-" + key + "=";
+      foreach (var arg in myArgs)
+      {        
+        if (arg.StartsWith(lookup, StringComparison.InvariantCultureIgnoreCase))
+        {
+          return arg.Substring(lookup.Length);
+        }
+      }
+      return def;
     }
   }
 }
