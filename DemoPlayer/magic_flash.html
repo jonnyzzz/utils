@@ -1,0 +1,148 @@
+<html>
+<head>
+    <title>JetBrains demos</title>
+    <script language="JavaScript">
+        var t = function(x,y) { return x * 60 + y; }
+        var p = function(m,s,f, d) { 
+           var x = {timeout:t(m,s)*1000, src:f, delay : d};           
+           return x; 
+        };
+
+        var v = function(url) { 
+           return {timeout : 10, video : (url) };
+        };
+
+        var tc_spider = p(3, 33, 'http://confluence.jetbrains.net/download/attachments/37236940/TC_D2010.gif?version=1&modificationDate=1291046509000');
+        var jb_site = p(1,33, 'http://www.jetbrains.com');
+        var jb_sale = p(3,33, 'http://www.jetbrains.com/specials/index.jsp?home_banner');
+        var public_youtrack = p(2,33, 'http://youtrack.jetbrains.net/issues?q=for%3A+me+fix+for%3A+6.x++sort+by%3A+priority+%23Unresolved+');
+        
+        var host = '';
+        var files = [
+//            v('http://tv.jetbrains.net/sites/default/files/videos/converted/using-commands4.flv'),
+            p(0, 5, 'http://www.jetbrains.com'),
+            p(0,40, 'http://buildserver.labs.intellij.net/project.html?projectId=project1&tab=projectOverview', true),
+            p(0,40, 'http://buildserver.labs.intellij.net/viewType.html?tab=buildTypeStatusDiv&buildTypeId=bt653', true),
+            p(0,40, 'http://buildserver.labs.intellij.net/viewType.html?buildTypeId=bt438&tab=buildTypeChangeLog', true),
+            p(0,40, 'http://buildserver.labs.intellij.net/viewType.html?buildTypeId=bt438&tab=buildTypeChangeLog&from=&to=&user=&path=&showBuilds=true&changesLimit=1', true),
+            p(0,40, 'http://buildserver.labs.intellij.net/viewLog.html?buildId=963238&tab=Duplicator&buildTypeId=bt438', true),
+            p(0,40, 'http://buildserver.labs.intellij.net/viewLog.html?buildId=963238&buildTypeId=bt438&tab=Inspection', true),
+            p(0,40, 'http://buildserver.labs.intellij.net/viewLog.html?buildId=961856&buildTypeId=bt320&tab=testsInfo', true),
+            p(0,40, 'http://buildserver.labs.intellij.net/viewLog.html?buildId=961856&tab=buildLog&buildTypeId=bt320&tree=true##151,16f,s64d,s64i,s664,1j,s654,s657,s65b,qlry', true),
+
+//            v('http://tv.jetbrains.net/sites/default/files/videos/converted/using-commands4.flv'),
+//            v('http://tv.jetbrains.net/sites/default/files/videos/converted/wp7.flv'),
+//            v('http://tv.jetbrains.net/sites/default/files/videos/converted/dotTraceSnapshotComparisons.flv'),
+//            v('http://tv.jetbrains.net/sites/default/files/videos/converted/TC40-install-HD.flv'),
+//            v('http://tv.jetbrains.net/sites/default/files/videos/converted/tc-FinalHD.flv'),
+//            v('http://tv.jetbrains.net/sites/default/files/videos/converted/FastNavigation.flv'),
+
+
+            public_youtrack,
+            p(0,40, 'http://youtrack.jetbrains.net/issue/TW-12458', true),
+  
+            jb_site,
+            public_youtrack,
+            jb_site,
+            tc_spider,
+ 
+            p(0, 57, 'webstorm/editor_demo.html'),
+            public_youtrack,
+            p(5, 24, 'webstorm/ftp_sync.html'),
+
+            public_youtrack,
+            jb_sale,
+            tc_spider,
+            jb_site,
+
+
+//            p(3,59,'TeamCity/teamcity-install.html'),
+
+/* 
+            p(2,00,'flex/BlazeDS.htm'),
+            p(2,00,'flex/i18n.htm'),
+            p(2,00,'flex/psetup.htm'),
+
+
+           
+            p(6,43,'JavaScript_Debugger.html'),
+            p(5,42,'server_side_js_debugger.html'),
+            p(7,30,'seam-development.html'),
+            p(4,52,'spring.html'),
+            p(2,55,'groovyCoding.htm'),
+            p(2,55,'idea-remote-run-ideonly-1.htm'),
+            p(8,20, 'editor.htm'),
+            //p(3,20,'remote-run-eclipse.htm'),
+            p(2,55,'inspectionsJ1.htm'),
+            p(2,35,'swingBuilderJ1.htm'),
+            p(9,02,'refactorings8.html'),
+            p(2,55,'hibernateJ1.htm'),
+            p(7,10,'uml-class-diagrams.html'),
+*/        
+//            p(2,55,'htmlAssistanceJ1.htm'),
+        ];
+ 
+        swfId = "swf";
+
+        clo = function(idx) {            
+            if (idx >= files.length) {
+              idx = 0;
+            }
+            var obj = files[idx]; 
+            var nextIdx = idx+1;
+            var cont = function() {
+              setTimeout(function() {clo(nextIdx) }, obj.timeout);
+            }
+
+
+            if (obj.delay) {
+              var tmp = (swfId == "swf") ? "swf2" : "swf";
+              document.getElementById(tmp).src = obj.src;
+              setTimeout(function() {
+                 document.getElementById(swfId).style.display = 'none';
+                 document.getElementById(tmp).style.display = 'block';
+                 document.getElementById(swfId).src = 'empty.html';
+                 swfId = tmp;
+                 cont();               
+              }, 15 * 1000);
+            } else
+           
+           if (obj.video) {
+
+              var url = 'new/index.html#/' + obj.video;
+              document.getElementById(swfId).src = url;
+
+              var checkFinish = function() {
+                try {
+                  var u = ("" + document.getElementById(swfId).contentDocument.location.href);
+                  if (u.indexOf('#finis') > 0 || u.indexOf('empty.html') >= 0) {
+                    cont();
+                    return;
+                  } 
+                } catch(e)  {  }
+
+                setTimeout(checkFinish, 100);
+              };
+              checkFinish();
+
+            } else {
+//            alert(obj.src);
+              document.getElementById(swfId).src = obj.src; 
+              cont();
+            }
+
+        }
+
+        setTimeout(function() {clo(0) }, 1);
+    </script>
+
+</head>
+
+<body>
+
+<div id="gap"> </div>
+<iframe id="swf" width="100%" height="100%" src='empty.html' style="border:0"></iframe>
+<iframe id="swf2" width="100%" height="100%" src='empty.html' style="border:0; display:none;"></iframe>
+
+</body>
+</html>

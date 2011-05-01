@@ -1,0 +1,55 @@
+<html>
+ <head>
+   <title>Videos</title>
+	<script type="text/javascript" src="flowplayer-3.2.6.min.js"></script>
+ <head>
+ <body style="text-align:center; overflow:hidden;background-color:#111;">
+
+
+ <a id="player1" class="player1" href="http://tv.jetbrains.net/sites/default/files/videos/converted/using-commands4.flv"
+    style="margin:0 auto; background-color:#111; display:block; width:1150px; height:740px;" > </a>
+
+ <span id="uuu" style="display:none;"> </span>
+ <a href="#finished" style="display:none;">finish</a>
+ 
+ <script type="text/javascript">
+    var href = document.location.href;
+    document.getElementById('uuu').innerHTML = href;    
+
+    var path = href.substring(2 + href.indexOf('#/'));
+
+    document.getElementById('uuu').value = path;    
+    document.getElementById('player1').href = path;
+
+
+
+    $f("player1", "flowplayer-3.2.7.swf", {
+    clip: {
+        autoPlay: true,
+        autoBuffering: true,
+        scaling : 'fit',
+        onFinish : function() {
+          var h = document.location.href;
+          document.location.href = "empty.html?wss#finished";     
+        }
+
+    },
+    plugins: {
+        controls: null
+    },
+
+    onFinish : function() {
+      var h = document.location.href;
+      document.location.href = h + "empty.html?wss#finished";     
+    }
+
+});
+
+
+ 
+ </script>
+
+
+
+
+</html>
