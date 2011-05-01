@@ -19,6 +19,21 @@
         
         var host = '';
         var files = [
+
+
+// USAGE:
+// use v('utl to video in .flv') to show video
+// use p(minutes, seconds, url) to show page for minutes:seconds time
+// use p(minutes, seconds, url, true) to use double-buffered show, i.e. page is opened in background, after 10 seconds background frame is shown
+// it's recommended to download all needed videos from http://tv.jetbrains.net/air, every link on the right points to .flv
+
+
+//
+//DO NOT FORGET, this is javascript array, Be carefull with ';' and ','
+//
+// To show links below VPN to spb office is required.
+//
+
 //            v('http://tv.jetbrains.net/sites/default/files/videos/converted/using-commands4.flv'),
             p(0, 5, 'http://www.jetbrains.com'),
             p(0,40, 'http://buildserver.labs.intellij.net/project.html?projectId=project1&tab=projectOverview', true),
