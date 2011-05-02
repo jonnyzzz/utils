@@ -67,7 +67,7 @@ namespace ccimage
 
     private string GetFile(string ext)
     {
-      string dir = args.Get("dir", Environment.CurrentDirectory);
+      string dir = args.Get("dir", Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments));
       int cnt = 0;
       while (true)
       {
