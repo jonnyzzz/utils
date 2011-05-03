@@ -17,7 +17,7 @@ namespace p4clientsCleaner
       Console.Out.WriteLine("(C) 2011 Eugene Petrenko.");
 
       Console.Out.WriteLine("Usage: ");
-      Console.Out.WriteLine(" p4clientsCleaner.exe [-client]");
+      Console.Out.WriteLine(" p4ccc.exe [-client]");
       Console.Out.WriteLine("         -client        specifies workspace to perform the clean ");
       Console.Out.WriteLine("                        %P4CLIENT% in considered by default");
       Console.Out.WriteLine("");
