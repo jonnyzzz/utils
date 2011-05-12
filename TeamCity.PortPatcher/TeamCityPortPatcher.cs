@@ -41,7 +41,7 @@ namespace PatchTeamCityPort
       var path = Path.Combine(home, "buildAgent/conf/buildAgent.properties");
 
       var text = File.ReadAllText(path);
-      text.Replace("localhost:8111", "localhost:8222");
+      text = text.Replace("localhost:8111", "localhost:8222");
 
       File.WriteAllText(path, text);
     }
