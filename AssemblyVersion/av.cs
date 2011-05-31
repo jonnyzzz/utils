@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace ConsoleApplication4
@@ -21,9 +22,11 @@ namespace ConsoleApplication4
       Console.Out.WriteLine("Runtime Version: " + info.ImageRuntimeVersion);
 
       Console.Out.WriteLine("References: ");
-      foreach (var r in info.GetReferencedAssemblies())
+
+      var refs = info.GetReferencedAssemblies().Select(r => r.FullName + ", platform=" + r.ProcessorArchitecture).OrderBy(x=>x);
+      foreach (var r in refs)
       {
-        Console.Out.WriteLine("  " + r.FullName);        
+        Console.Out.WriteLine("  " + r);
       }
 
       return 0;
