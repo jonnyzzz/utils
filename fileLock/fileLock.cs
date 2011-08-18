@@ -15,8 +15,8 @@ public static class FileLock {
         Console.Out.WriteLine("Error: File {0} does not exist!", arg);
         continue;
       }
-
       locks[arg] = new FileStream(arg, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+      Console.Out.WriteLine("Locked file: {0}" , arg);
     }
 
     Console.In.Read();
