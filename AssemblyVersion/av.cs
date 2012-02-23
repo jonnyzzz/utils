@@ -10,12 +10,30 @@ namespace ConsoleApplication4
     static int Main(string[] args)
     {
       string file = args[0];
+      if (Directory.Exists(file)) {
+        foreach(var f in Directory.GetFiles(file, "*.*")) {
+          if (f.EndsWith(".exe") || f.EndsWith(".dll")) {
+            ProcessFile(f);
+            Console.Out.WriteLine();
+            Console.Out.WriteLine();
+          }
+        }
+        return 0;
+      }
+
+
       if (!File.Exists(file))
       {
         Console.Out.WriteLine("File {0} is not found", file);
         return -1;
       }
 
+      ProcessFile(file);
+     
+      return 0;
+    }
+
+    static void ProcessFile(string file) {
       var info = Assembly.ReflectionOnlyLoadFrom(file);
 
       Console.Out.WriteLine("Assembly:        " + info.FullName);
@@ -28,8 +46,6 @@ namespace ConsoleApplication4
       {
         Console.Out.WriteLine("  " + r);
       }
-
-      return 0;
     }
   }
 }
