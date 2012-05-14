@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using JetBrains.TeamCity.Utils.PE;
 
 namespace ConsoleApplication4
 {
@@ -38,6 +39,7 @@ namespace ConsoleApplication4
 
       Console.Out.WriteLine("Assembly:        " + info.FullName);
       Console.Out.WriteLine("Runtime Version: " + info.ImageRuntimeVersion);
+      Console.Out.WriteLine("Platform: "        + PEReader.DescribeAssemblyRuntime(file));
 
       Console.Out.WriteLine("References: ");
 
