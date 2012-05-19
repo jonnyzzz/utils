@@ -13,7 +13,7 @@ namespace PictureResize
       try
       {
         Console.Out.WriteLine("<Convert resolution>.exe <from folder> <to folder> <max resolution>");
-        if (args.Length != 4) return -1;
+        if (args.Length != 3) return -1;
 
         var fromPath = args.ElementAtOrDefault(0);
         var toPath = args.ElementAtOrDefault(1);
