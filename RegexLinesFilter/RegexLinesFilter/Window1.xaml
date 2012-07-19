@@ -33,6 +33,6 @@
             Name="myDoc" 
             HorizontalScrollBarVisibility="Auto" 
             VerticalScrollBarVisibility="Auto"
-            FontFamily="Lucida Console" TextDecorations="None" FontSize="12" />
+            FontFamily="Lucida Console" TextDecorations="None" FontSize="12" AcceptsReturn="True" AcceptsTab="True" TextChanged="myDoc_TextChanged" />
     </Grid>
 </Window>
