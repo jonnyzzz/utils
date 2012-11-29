@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using mshtml;
 
@@ -31,6 +32,7 @@ namespace LingvoOnline
     private void Form1_Activated(object sender, EventArgs e)
     {
       var text = (Clipboard.GetText() ?? "").Trim();
+      text = Regex.Replace(text, "[\\.,-:;\\s]+", "");
       if (!string.IsNullOrWhiteSpace(text) && !text.Equals(SearchText))
       {
         SearchText = text;
@@ -51,7 +53,7 @@ namespace LingvoOnline
       dynamic doc = myWeb.Document.DomDocument;
       if (doc == null) return;
 
-      foreach (string clazz in new[] { "b-comments-facebook", "b-user-links", "b-glossary", "b-head__r-col", "home", "mainmenu", "topmenu", "b-right-panel", "js-correct-height", "b-useful-info-after-searchform" })
+      foreach (string clazz in new[] { "footermenu", "b-comments-facebook", "b-user-links", "b-glossary", "b-head__r-col", "home", "mainmenu", "topmenu", "b-right-panel", "js-correct-height", "b-useful-info-after-searchform" })
       {
         foreach (dynamic o in doc.getElementsByClassName(clazz))
         {
