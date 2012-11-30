@@ -32,7 +32,7 @@ namespace LingvoOnline
     private void Form1_Activated(object sender, EventArgs e)
     {
       var text = (Clipboard.GetText() ?? "").Trim();
-      text = Regex.Replace(text, "[\\.,-:;\\s]+", "");
+      text = Regex.Replace(text, "[\\.,-:;]+", "").Trim();
       if (!string.IsNullOrWhiteSpace(text) && !text.Equals(SearchText))
       {
         SearchText = text;
