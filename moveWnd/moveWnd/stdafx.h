@@ -16,5 +16,7 @@
 #include <atlsafe.h>
 #include <atlcomtime.h>
 #include <atltime.h>
+#include <vector>
 
 using namespace ATL;
+using namespace std;
