@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using mshtml;
 
 namespace LingvoOnline
 {
@@ -16,6 +9,7 @@ namespace LingvoOnline
     public Form1()
     {
       InitializeComponent();
+      myWeb.ScriptErrorsSuppressed = true;
     }
 
     private string SearchText
@@ -53,11 +47,39 @@ namespace LingvoOnline
       dynamic doc = myWeb.Document.DomDocument;
       if (doc == null) return;
 
-      foreach (string clazz in new[] { "footermenu", "b-comments-facebook", "b-user-links", "b-glossary", "b-head__r-col", "home", "mainmenu", "topmenu", "b-right-panel", "js-correct-height", "b-useful-info-after-searchform" })
+      foreach (string clazz in new[]
+        {
+          "footermenu", 
+          "b-comments-facebook", 
+          "b-user-links", 
+          "b-glossary", 
+          "b-head__r-col", 
+          "home", 
+          "mainmenu", 
+          "topmenu", 
+          "b-right-panel", 
+          "js-correct-height", 
+          "b-useful-info-after-searchform",
+          "js-search-panel-box",
+          "g-banner-placeholder",
+          "g-body__right",
+          "g-logobox",
+          "g-menubox",
+          "g-page__ft",
+          "l-reverse",
+          "l-closeDict",
+          "g-text-banner-placeholder",
+          "g-page__top"
+        })
       {
         foreach (dynamic o in doc.getElementsByClassName(clazz))
         {
-          o.parentNode.removeChild(o);
+          if (o != null)
+          {
+            var p = o.parentNode;
+            if (p !=  null) 
+              p.removeChild(o);
+          }
         }
       }
 
