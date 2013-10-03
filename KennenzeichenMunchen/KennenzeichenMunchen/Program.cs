@@ -9,16 +9,11 @@ namespace KennenzeichenMunchen
     [STAThread]
     static void Main(string[] args)
     {
-      IEnumerable<Numb> allNumbers = NumsStore.LoadNumbers();
-
-      
-
-
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
+
+      IEnumerable<Numb> allNumbers = NumsStore.LoadNumbers();
       Application.Run(new Form1(allNumbers));
-
-
     }
   }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -14,7 +15,39 @@ namespace KennenzeichenMunchen
     public Form1(IEnumerable<Numb> allNumbers)
     {
       InitializeComponent();
-      webBrowser1.ScriptErrorsSuppressed = true;
+      myWeb.ScriptErrorsSuppressed = true;
+
+      textBox2.Font = FESchrift.Font(18);
+      textBox1.Font = new Font("COURIER NEW", 10);
+
+      textBox1.SelectionChanged += (sender, args) =>
+      {
+        try
+        {
+          var text = "\n" + textBox1.Text;
+          int pos = 1 + textBox1.SelectionStart;
+          if (!(pos >= 0 && pos < text.Length))
+          {
+            textBox2.Text = "";
+          }
+          else
+          {
+            int start = pos;
+            int end = pos;
+            while (start >= 0 && text[start] != '\n') start--;
+            while (end < text.Length && text[end] != '\n') end++;
+
+            var line = text.Substring(start, end - start);
+            textBox2.Text = new Numb(line).ToShortString();
+          } 
+        }
+        catch
+        {
+          //NOP
+        }
+      };
+
+      textBox1.TextChanged += (sender, args) => textBox2.Text = "";
 
       foreach (var numb in allNumbers)
       {
@@ -26,14 +59,14 @@ namespace KennenzeichenMunchen
     protected override void OnLoad(EventArgs e)
     {
       base.OnLoad(e);
-      webBrowser1.Navigate("https://www10.muenchen.de/WuKe/");
-      webBrowser1.Navigating += (sender, args) =>
+      myWeb.Navigate("https://www10.muenchen.de/WuKe/");
+      myWeb.Navigating += (sender, args) =>
       {
         args.Cancel = !args.TargetFrameName.EndsWith("");
       };
-      webBrowser1.DocumentCompleted += (sender, args) =>
+      myWeb.DocumentCompleted += (sender, args) =>
       {
-        if (!ParseNumbers(webBrowser1.DocumentText)) return;
+        if (!ParseNumbers(myWeb.DocumentText)) return;
 
         ThreadPool.QueueUserWorkItem(delegate
         {
@@ -41,7 +74,7 @@ namespace KennenzeichenMunchen
           BeginInvoke((Action) (delegate
           {
             HtmlElement htmlElement =
-              webBrowser1.Document.GetElementsByTagName("input")
+              myWeb.Document.GetElementsByTagName("input")
                 .Cast<HtmlElement>().FirstOrDefault(x => x.GetAttribute("name") == "pbWeiter");
 
             if (htmlElement != null)
@@ -70,7 +103,7 @@ namespace KennenzeichenMunchen
 
       string @join = string.Join("\r\n", data);
       NumsStore.AddMoreNumbers(myNumbers);
-
+      
       textBox1.Text = @join;
     }
 

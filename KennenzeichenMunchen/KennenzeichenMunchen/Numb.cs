@@ -31,7 +31,14 @@ namespace KennenzeichenMunchen
 
     public override string ToString()
     {
-      return string.Format("[{0:######}]  M {1} {2}", Rank, XX, Num);
+      string ranq = "" + Rank;
+      while (ranq.Length <= 6) ranq = " " + ranq;
+      return string.Format("[{0}]  {1}", ranq, ToShortString());
+    }
+
+    public string ToShortString()
+    {
+      return "M " + XX + "  " + Num;
     }
 
     private static string _96(string _)
@@ -56,53 +63,37 @@ namespace KennenzeichenMunchen
 
     public int MakeRank()
     {
-      int rank = 1;
+      double rank = 1;
 
-      if (poly(Num)) rank += 50;
-      if (poly(_96(Num))) rank += 40;
-      if (poly(_17(Num))) rank += 10;
-      if (poly(_38(Num))) rank += 10;
+      if (poly(Num)) rank += 150;
+      if (poly(_96(Num))) rank += 140;
+      if (poly(_17(Num))) rank += 110;
+      if (poly(_38(Num))) rank += 110;
 
-      rank += 1000/
-              (1 +
-               (1 + Math.Abs(Num[0] - Num[1]))*(1 + Math.Abs(Num[1] - Num[2]))*(1 + Math.Abs(Num[2] - Num[3]))*
-               (1 + Math.Abs(Num[3] - Num[0])));
+      rank += Math.Pow(4.0 / Num.ToCharArray().Distinct().Count(), 3) / 2;
       
-      if (Num[0] == Num[1] && Num[2] == Num[3]) rank += 40;
-      if (Num[0] == Num[3] && Num[1] == Num[2]) rank += 40;
+      if (Num[0] == Num[1] && Num[2] == Num[3]) rank += 120;  //xxyy
+      if (Num[0] == Num[3] && Num[1] == Num[2]) rank += 120;  //xyxy
       
-      if (Num[0] == Num[3]) rank += 5;
-      if (Num[2] == Num[1]) rank += 5;
-      if (Num[0] == Num[2]) rank += 5;
+      if (Num[0] == Num[3]) rank += 25;  //x??x
+      if (Num[2] == Num[1]) rank += 25;  //?xx?
+      if (Num[0] == Num[2]) rank += 25;  //x?x?
 
-      if (Num[0] == Num[1] && Num[1] == Num[2]) rank += 45;
-      if (Num[1] == Num[2] && Num[2] == Num[3]) rank += 45;
+      if (Num[0] == Num[1] && Num[1] == Num[2]) rank += 65;  //xxx?
+      if (Num[1] == Num[2] && Num[2] == Num[3]) rank += 65;  //?xxx
 
+//      rank += 25 * Math.Pow(Num.ToCharArray().Count(x => x == '8'), 1);
+//      rank += 25 * Math.Pow(Num.ToCharArray().Count(x => x == '7'), 1);
+//      rank += 25 * Math.Pow(Num.ToCharArray().Count(x => x == '0'), 1);
 
-      rank += 20 * Num.ToCharArray().Count(x => x == '4');
-      rank += 20 * Num.ToCharArray().Count(x => x == '5');
-      rank += 20 * Num.ToCharArray().Count(x => x == '8');
-      rank += 20 * Num.ToCharArray().Count(x => x == '9');
-      rank += 20 * Num.ToCharArray().Count(x => x == '6');
-      rank += 25 * Num.ToCharArray().Count(x => x == '7');
+      var sims = "XUAIWTYHVM".ToCharArray().Select(x => "" + x).ToArray();
+      rank += sims.Where(x => XX == x + "M").Sum(x => 100);
+      
+      if (poly("M" + XX)) rank += 100;
+      if (XX.EndsWith("M")) rank += 20;
+      if (XX.StartsWith("M")) rank += 20;
 
-      var difs = Num.ToCharArray().Distinct().Count();
-      rank += (4*4*4/difs*difs*difs)/3;
-
-      if (poly("M" + XX)) rank += 400;
-      if (XX == "XM") rank += 301;
-      if (XX == "UM") rank += 301;
-      if (XX == "AM") rank += 301;
-      if (XX == "IM") rank += 301;
-      if (XX == "WM") rank += 301;
-      if (XX == "TM") rank += 301;
-      if (XX == "YM") rank += 301;
-      if (XX == "HM") rank += 301;
-      if (XX == "VM") rank += 301;
-      if (XX == "NM") rank += 301;
-      if (XX.EndsWith("M")) rank += 233;
-
-      return rank;
+      return (int) Math.Ceiling(rank);
     }
 
     public override bool Equals(object obj)
@@ -136,3 +127,4 @@ namespace KennenzeichenMunchen
     }
   }
 }
+
