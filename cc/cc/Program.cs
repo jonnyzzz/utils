@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace cc
@@ -27,7 +28,7 @@ namespace cc
     {
       string text = Console.In.ReadToEnd();
       Console.Out.WriteLine(text);
-      Clipboard.SetText(text);    
+      Clipboard.SetText(text);
       return 0;
     }
   }
